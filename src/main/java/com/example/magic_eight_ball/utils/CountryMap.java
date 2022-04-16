@@ -11,7 +11,6 @@ public class CountryMap {
         for (String iso : Locale.getISOCountries()) {
             Locale l = new Locale("", iso);
             this.countries.put(iso, l.getDisplayCountry().toUpperCase());
-            System.out.println("Key: " + iso + ", value: " +  l.getDisplayCountry().toUpperCase());
         }
     }
 
