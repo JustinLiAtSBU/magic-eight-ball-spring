@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Arrays;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -35,6 +37,12 @@ public class Movie {
     private String poster;
 
     public String toString() {
-        return "Movie (" + tconst + "): " + title;
+        StringBuilder desc = new StringBuilder("Movie (" + tconst + "): " + title);
+        desc.append("\n├── Rating: ").append(rating);
+        desc.append("\n├── Votes: ").append(votes);
+        desc.append("\n├── Year: ").append(year);
+        desc.append("\n├── Country: ").append(country);
+        desc.append("\n└── Genres: ").append(Arrays.toString(genres));
+        return desc.toString();
     }
 }
