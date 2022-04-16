@@ -2,14 +2,15 @@ package com.example.magic_eight_ball.controller;
 
 import com.example.magic_eight_ball.model.Movie;
 import com.example.magic_eight_ball.repository.MovieRepository;
+import com.example.magic_eight_ball.service.MovieService;
+import com.example.magic_eight_ball.utils.CountryMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-
-import com.example.magic_eight_ball.utils.CountryMap;
+import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -19,12 +20,22 @@ public class MovieController {
     @Autowired
     MovieRepository movieRepository;
 
+    @Autowired
+    MovieService movieService;
+
     CountryMap countryMap = new CountryMap();
 
     @GetMapping("/all")
-    public ResponseEntity<List<Movie>> getAllMovies() {
+    public ResponseEntity<List<Movie>> getAllMovies(
+            @RequestParam(required = false) Integer top,
+            @RequestParam(required = false) String iso,
+            @RequestParam(required = false) Double minRating,
+            @RequestParam(required = false) Integer minVotes,
+            @RequestParam(required = false) Integer minYear,
+            @RequestParam(required = false) List<String> genres
+    ) {
         try {
-            List<Movie> movies = new ArrayList<>(movieRepository.findAll());
+            List<Movie> movies = movieService.getMoviesByCriteria(top, iso, minRating, minVotes, minYear, genres);
             if (movies.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -41,4 +52,23 @@ public class MovieController {
         return movieData.map(movie -> new ResponseEntity<>(movie, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<Movie> getRandomMovie(
+            @RequestParam(required = false) Integer top,
+            @RequestParam(required = false) String iso,
+            @RequestParam(required = false) Double minRating,
+            @RequestParam(required = false) Integer minVotes,
+            @RequestParam(required = false) Integer minYear,
+            @RequestParam(required = false) List<String> genres
+    ) {
+        try {
+            Movie randomMovie = movieService.getRandomMovie(top, iso, minRating, minVotes, minYear, genres);
+            if (randomMovie == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(randomMovie, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
