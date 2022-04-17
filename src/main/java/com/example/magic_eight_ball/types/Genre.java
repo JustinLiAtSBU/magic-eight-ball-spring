@@ -1,0 +1,30 @@
+package com.example.magic_eight_ball.types;
+
+public enum Genre {
+    ACTION,
+    ADVENTURE,
+    ANIMATION,
+    BIOGRAPHY,
+    COMEDY,
+    CRIME,
+    DOCUMENTARY,
+    DRAMA,
+    FAMILY,
+    FANTASY,
+    GAME_SHOW,
+    HISTORY,
+    HORROR,
+    MUSIC,
+    MUSICAL,
+    MYSTERY,
+    NEWS,
+    REALITY_TV,
+    ROMANCE,
+    SCI_FI,
+    SHORT,
+    SPORT,
+    TALK_SHOW,
+    THRILLER,
+    WAR,
+    WESTERN
+}

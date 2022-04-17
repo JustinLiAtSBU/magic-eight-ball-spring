@@ -28,14 +28,14 @@ public class MovieController {
     @GetMapping("/all")
     public ResponseEntity<List<Movie>> getAllMovies(
             @RequestParam(required = false) Integer top,
-            @RequestParam(required = false) String iso,
+            @RequestParam(required = false) String country,
             @RequestParam(required = false) Double minRating,
             @RequestParam(required = false) Integer minVotes,
             @RequestParam(required = false) Integer minYear,
             @RequestParam(required = false) List<String> genres
     ) {
         try {
-            List<Movie> movies = movieService.getMoviesByCriteria(top, iso, minRating, minVotes, minYear, genres);
+            List<Movie> movies = movieService.getMoviesByCriteria(top, country, minRating, minVotes, minYear, genres);
             if (movies.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -55,14 +55,14 @@ public class MovieController {
     @GetMapping("/random")
     public ResponseEntity<Movie> getRandomMovie(
             @RequestParam(required = false) Integer top,
-            @RequestParam(required = false) String iso,
+            @RequestParam(required = false) String country,
             @RequestParam(required = false) Double minRating,
             @RequestParam(required = false) Integer minVotes,
             @RequestParam(required = false) Integer minYear,
             @RequestParam(required = false) List<String> genres
     ) {
         try {
-            Movie randomMovie = movieService.getRandomMovie(top, iso, minRating, minVotes, minYear, genres);
+            Movie randomMovie = movieService.getRandomMovie(top, country, minRating, minVotes, minYear, genres);
             if (randomMovie == null) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
