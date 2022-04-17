@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.LinkedHashMap;
 
 @Getter
 @Setter
@@ -18,6 +21,10 @@ public class User {
     private String id;
 
     private String name;
-    private Movie[] watchedMovies;
-    private TvShow[] watchedTvShows;
+    private LinkedHashMap<String, Movie> watchedMovies;
+    private LinkedHashMap<String, TvShow> watchedTvShows;
+
+    public User(String name) {
+        this.name = name;
+    }
 }

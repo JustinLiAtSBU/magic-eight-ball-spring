@@ -1,5 +1,6 @@
 package com.example.magic_eight_ball.controller;
 
+import com.example.magic_eight_ball.model.Movie;
 import com.example.magic_eight_ball.model.User;
 import com.example.magic_eight_ball.repository.user.UserRepository;
 import com.example.magic_eight_ball.service.UserService;
@@ -8,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/users")
@@ -33,4 +34,16 @@ public class UserController {
         }
     }
 
+    @PutMapping("/watched")
+    public ResponseEntity<User> updateUser(@RequestParam String name, @RequestBody Movie movie) {
+        Optional<User> user = userRepository.findByName(name);
+
+        if (!user.isPresent()) {
+            User newUser = userService.createUserWithWatchedMovies(name, movie);
+            return ResponseEntity.ok(newUser);
+        } else {
+            User updatedUser = userService.updateUsersWatchedMovies(user.get(), movie);
+            return ResponseEntity.ok(updatedUser);
+        }
+    }
 }
