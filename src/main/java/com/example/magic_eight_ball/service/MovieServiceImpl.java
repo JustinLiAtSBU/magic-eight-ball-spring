@@ -1,8 +1,8 @@
 package com.example.magic_eight_ball.service;
 
 import com.example.magic_eight_ball.model.Movie;
-import com.example.magic_eight_ball.repository.CustomMovieRepository;
-import com.example.magic_eight_ball.repository.MovieRepository;
+import com.example.magic_eight_ball.repository.movie.CustomMovieRepository;
+import com.example.magic_eight_ball.repository.movie.MovieRepository;
 import com.example.magic_eight_ball.utils.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

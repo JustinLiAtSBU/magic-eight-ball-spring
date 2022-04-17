@@ -1,7 +1,7 @@
 package com.example.magic_eight_ball.controller;
 
 import com.example.magic_eight_ball.model.Movie;
-import com.example.magic_eight_ball.repository.MovieRepository;
+import com.example.magic_eight_ball.repository.movie.MovieRepository;
 import com.example.magic_eight_ball.service.MovieService;
 import com.example.magic_eight_ball.utils.CountryMap;
 import org.springframework.beans.factory.annotation.Autowired;

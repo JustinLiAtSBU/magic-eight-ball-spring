@@ -1,8 +1,8 @@
 package com.example.magic_eight_ball.service;
 
 import com.example.magic_eight_ball.model.TvShow;
-import com.example.magic_eight_ball.repository.CustomTvShowRepository;
-import com.example.magic_eight_ball.repository.TvShowRepository;
+import com.example.magic_eight_ball.repository.tvshow.CustomTvShowRepository;
+import com.example.magic_eight_ball.repository.tvshow.TvShowRepository;
 import com.example.magic_eight_ball.utils.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

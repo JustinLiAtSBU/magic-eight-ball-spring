@@ -1,4 +1,4 @@
-package com.example.magic_eight_ball.repository;
+package com.example.magic_eight_ball.repository.movie;
 
 import com.example.magic_eight_ball.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
