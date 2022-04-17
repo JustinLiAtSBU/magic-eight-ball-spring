@@ -1,7 +1,7 @@
 package com.example.magic_eight_ball.controller;
 
 import com.example.magic_eight_ball.model.TvShow;
-import com.example.magic_eight_ball.repository.TvShowRepository;
+import com.example.magic_eight_ball.repository.tvshow.TvShowRepository;
 import com.example.magic_eight_ball.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.example.magic_eight_ball.repository;
+package com.example.magic_eight_ball.repository.tvshow;
 
 import com.example.magic_eight_ball.model.TvShow;
 import org.springframework.data.mongodb.repository.MongoRepository;
