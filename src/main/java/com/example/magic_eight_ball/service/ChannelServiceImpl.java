@@ -29,7 +29,7 @@ public class ChannelServiceImpl implements ChannelService {
     TvShowRepository tvShowRepository;
 
     @Override
-    public Channel createChannelWithMembers(String channelId, String name, HashSet<String> members) {
+    public Channel createChannelWithMembers(String channelId, String name, String guild, HashSet<String> members) {
         for (String member: members) {
             if (!userRepository.findByName(member).isPresent()) {
                 System.out.println("Creating new user: " + member);
@@ -37,7 +37,7 @@ public class ChannelServiceImpl implements ChannelService {
                 userRepository.save(newUser);
             }
         }
-        Channel channel = new Channel(channelId, name, members);
+        Channel channel = new Channel(channelId, name, guild, members);
         channelRepository.save(channel);
         return channel;
     }

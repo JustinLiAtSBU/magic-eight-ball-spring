@@ -21,13 +21,15 @@ public class Channel {
 
     private String name;
     private String channelId;
+    private String guild;
     private Set<String> members;
     private Set<String> watchedMovies;
     private Set<String> watchedTvShows;
 
-    public Channel(String channelId, String channelName, HashSet<String> members) {
+    public Channel(String channelId, String channelName, String guild, HashSet<String> members) {
         this.name = channelName;
         this.channelId = channelId;
+        this.guild = guild;
         this.watchedMovies = new HashSet<>();
         this.watchedTvShows = new HashSet<>();
         this.members = members;
