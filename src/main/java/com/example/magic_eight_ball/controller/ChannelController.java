@@ -46,7 +46,11 @@ public class ChannelController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createChannel(@RequestParam String channelId, @RequestParam String channelName, @RequestBody ArrayList<String> members) {
+    public ResponseEntity<String> createChannel(
+            @RequestParam String channelId,
+            @RequestParam String channelName,
+            @RequestParam String guild,
+            @RequestBody ArrayList<String> members) {
         System.out.println(members);
         HashSet<String> membersSet = new HashSet<>(members);
         Optional<Channel> channel = channelRepository.findByChannelId(channelId);
@@ -55,7 +59,7 @@ public class ChannelController {
             channelService.updateChannelMembers(confirmedChannel, membersSet);
             return new ResponseEntity<>("Channel " + channelName + " members updated.", HttpStatus.NO_CONTENT);
         } else {
-            channelService.createChannelWithMembers(channelId, channelName, membersSet);
+            channelService.createChannelWithMembers(channelId, channelName, guild, membersSet);
             return ResponseEntity.ok("Channel " + channelName + " created.");
         }
     }
