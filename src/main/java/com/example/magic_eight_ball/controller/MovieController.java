@@ -68,4 +68,25 @@ public class MovieController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/random/{channelId}")
+    public ResponseEntity<Movie> getNonWatchedRandomMovie(
+            @PathVariable("channelId") String channelId,
+            @RequestParam(required = false) Integer top,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) Double minRating,
+            @RequestParam(required = false) Integer minVotes,
+            @RequestParam(required = false) Integer minYear,
+            @RequestParam(required = false) List<String> genres
+    ) {
+        try {
+            Movie randomMovie = movieService.getChannelsNonWatchedRandomMovie(channelId, top, country, minRating, minVotes, minYear, genres);
+            if (randomMovie == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(randomMovie, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

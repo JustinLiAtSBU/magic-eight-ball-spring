@@ -1,6 +1,7 @@
 package com.example.magic_eight_ball.controller;
 
 import com.example.magic_eight_ball.model.TvShow;
+import com.example.magic_eight_ball.model.TvShow;
 import com.example.magic_eight_ball.repository.tvshow.TvShowRepository;
 import com.example.magic_eight_ball.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,27 @@ public class TvShowController {
     ) {
         try {
             TvShow randomTvShow = tvShowService.getRandomTvShow(top, country, minRating, minVotes, minYear, genres);
+            if (randomTvShow == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(randomTvShow, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/random/{channelId}")
+    public ResponseEntity<TvShow> getNonWatchedRandomTvShow(
+            @PathVariable("channelId") String channelId,
+            @RequestParam(required = false) Integer top,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) Double minRating,
+            @RequestParam(required = false) Integer minVotes,
+            @RequestParam(required = false) Integer minYear,
+            @RequestParam(required = false) List<String> genres
+    ) {
+        try {
+            TvShow randomTvShow = tvShowService.getChannelsNonWatchedRandomTvShow(channelId, top, country, minRating, minVotes, minYear, genres);
             if (randomTvShow == null) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
