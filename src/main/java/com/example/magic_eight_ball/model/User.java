@@ -26,5 +26,15 @@ public class User {
 
     public User(String name) {
         this.name = name;
+        this.watchedMovies= new LinkedHashMap<>();
+        this.watchedTvShows = new LinkedHashMap<>();
+    }
+
+    public User(String name, Movie movie) {
+        this.name = name;
+        LinkedHashMap<String, Movie> movies = new LinkedHashMap<>();
+        movies.put(movie.getTconst(), movie);
+        this.watchedMovies = movies;
+        this.watchedTvShows = new LinkedHashMap<>();
     }
 }

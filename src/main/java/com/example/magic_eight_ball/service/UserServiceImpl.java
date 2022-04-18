@@ -16,10 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUserWithWatchedMovies(String name, Movie movie) {
-        User newUser = new User(name);
-        LinkedHashMap<String, Movie> movies = new LinkedHashMap<>();
-        movies.put(movie.getTconst(), movie);
-        newUser.setWatchedMovies(movies);
+        User newUser = new User(name, movie);
         userRepository.save(newUser);
         return newUser;
     }

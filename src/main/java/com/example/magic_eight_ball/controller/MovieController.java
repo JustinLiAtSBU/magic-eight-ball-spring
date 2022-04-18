@@ -3,7 +3,6 @@ package com.example.magic_eight_ball.controller;
 import com.example.magic_eight_ball.model.Movie;
 import com.example.magic_eight_ball.repository.movie.MovieRepository;
 import com.example.magic_eight_ball.service.MovieService;
-import com.example.magic_eight_ball.utils.CountryMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +21,6 @@ public class MovieController {
 
     @Autowired
     MovieService movieService;
-
-    CountryMap countryMap = new CountryMap();
 
     @GetMapping("/all")
     public ResponseEntity<List<Movie>> getAllMovies(
