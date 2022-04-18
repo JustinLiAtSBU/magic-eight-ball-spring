@@ -52,7 +52,7 @@ public class ChannelServiceImpl implements ChannelService {
                 userRepository.save(newUser);
             }
         }
-        channel.getMembers().addAll(members);
+        channel.setMembers(members);
         channelRepository.save(channel);
         return channel;
     }
