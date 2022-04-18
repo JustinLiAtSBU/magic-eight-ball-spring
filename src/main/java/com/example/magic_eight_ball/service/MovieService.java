@@ -8,4 +8,6 @@ public interface MovieService {
     List<Movie> getMoviesByCriteria(Integer top, String iso, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
 
     Movie getRandomMovie(Integer top, String iso, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
+
+    Movie getChannelsNonWatchedRandomMovie(String channelId, Integer top, String country, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
 }

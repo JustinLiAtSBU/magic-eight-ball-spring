@@ -8,4 +8,6 @@ public interface TvShowService {
     List<TvShow> getTvShowsByCriteria(Integer top, String iso, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
 
     TvShow getRandomTvShow(Integer top, String iso, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
+
+    TvShow getChannelsNonWatchedRandomTvShow(String channelId, Integer top, String country, Double minRating, Integer minVotes, Integer minYear, List<String> genres);
 }
