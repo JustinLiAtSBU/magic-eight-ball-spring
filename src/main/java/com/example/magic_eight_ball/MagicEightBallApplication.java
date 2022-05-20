@@ -19,6 +19,8 @@ public class MagicEightBallApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/channels/all").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/movies/random").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/tvshows/random").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}
