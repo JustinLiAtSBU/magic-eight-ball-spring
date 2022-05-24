@@ -18,11 +18,11 @@ public class MagicEightBallApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/channels/all").allowedOrigins("http://localhost:3000");
-				registry.addMapping("/movies/random").allowedOrigins("http://localhost:3000");
-				registry.addMapping("/movies/all").allowedOrigins("http://localhost:3000");
-				registry.addMapping("/tvshows/random").allowedOrigins("http://localhost:3000");
-				registry.addMapping("/tvshows/all").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/channels/all").allowedOrigins("https://justinli.herokuapp.com");
+				registry.addMapping("/movies/random").allowedOrigins("https://justinli.herokuapp.com");
+				registry.addMapping("/movies/all").allowedOrigins("https://justinli.herokuapp.com");
+				registry.addMapping("/tvshows/random").allowedOrigins("https://justinli.herokuapp.com");
+				registry.addMapping("/tvshows/all").allowedOrigins("https://justinli.herokuapp.com");
 			}
 		};
 	}
