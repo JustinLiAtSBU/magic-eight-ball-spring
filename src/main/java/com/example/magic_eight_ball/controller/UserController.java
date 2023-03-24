@@ -34,6 +34,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getUserCount() {
+        try {
+            List<User> users = userRepository.findAll();
+            return new ResponseEntity<>(users.size(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/watched")
     public ResponseEntity<User> updateUser(@RequestParam String name, @RequestBody Movie movie) {
         Optional<User> user = userRepository.findByName(name);

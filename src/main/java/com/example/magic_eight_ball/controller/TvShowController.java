@@ -2,6 +2,7 @@ package com.example.magic_eight_ball.controller;
 
 import com.example.magic_eight_ball.model.TvShow;
 import com.example.magic_eight_ball.model.TvShow;
+import com.example.magic_eight_ball.model.User;
 import com.example.magic_eight_ball.repository.tvshow.TvShowRepository;
 import com.example.magic_eight_ball.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class TvShowController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(tvShows, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getTvShowCount() {
+        try {
+            List<TvShow> tvShows = tvShowRepository.findAll();
+            return new ResponseEntity<>(tvShows.size(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -42,6 +42,16 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getMovieCount() {
+        try {
+            List<Movie> movies = movieRepository.findAll();
+            return new ResponseEntity<>(movies.size(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/{tconst}")
     public ResponseEntity<Movie> getMovieById(@PathVariable("tconst") String tconst) {
         System.out.println("tconst: " + tconst);

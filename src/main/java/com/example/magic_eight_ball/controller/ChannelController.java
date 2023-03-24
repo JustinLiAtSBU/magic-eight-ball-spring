@@ -3,6 +3,7 @@ package com.example.magic_eight_ball.controller;
 import com.example.magic_eight_ball.model.Movie;
 import com.example.magic_eight_ball.model.Channel;
 import com.example.magic_eight_ball.model.TvShow;
+import com.example.magic_eight_ball.model.User;
 import com.example.magic_eight_ball.repository.channel.ChannelRepository;
 import com.example.magic_eight_ball.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class ChannelController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             return new ResponseEntity<>(channels, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getChannelCount() {
+        try {
+            List<Channel> channels = channelRepository.findAll();
+            return new ResponseEntity<>(channels.size(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
